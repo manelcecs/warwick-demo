@@ -1,0 +1,64 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <div class="spacer"></div>
+  <span>Wellcome Search Keyword</span>
+  <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+  <!-- Resources -->
+  <h2>What I do?</h2>
+  <p>
+    I blend into the text you enter and search for the magic word. When I find
+    it, I will tell you how many times it appears and the time it took me to
+    find it.
+  </p>
+  <p>
+    Please, input a word in the field below, then insert a text in the text area
+    at the bottom.
+  </p>
+
+  <form>
+
+    <input
+      type="text"
+      class="formInput"
+      [formControl]="keyWordControl"
+      required
+    />
+    <span class="error" *ngIf="keyWordControl.invalid">{{
+      getErrorMessageKeyword()
+    }}</span>
+    <br />
+    <textarea
+      class="formInput"
+      [formControl]="textControl"
+      cols="50"
+      rows="10"
+      required
+    ></textarea>
+    <span class="error" *ngIf="textControl.invalid">{{
+      getErrorMessageText()
+    }}</span>
+
+    <br />
+    <button class="submit" (click)="onSubmit()" [disabled]="!validForm()">
+      Search
+    </button>
+    <button class="example" (click)="loadExample()">Example</button>
+  </form>
+
+  <div *ngIf="response !== undefined">
+    <h1>Occurrences of '{{request.keyWord}}': {{response.numberOccurrences}}</h1>
+    <h3>Time elapsed: {{response.timeElapsed}} ms</h3>
+  </div>
+</div>
+<router-outlet></router-outlet>
