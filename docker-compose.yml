@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+
+    search-keyword-back:
+            build: ./back
+            container_name: search-keyword-back
+            ports: 
+                - 8080:8080
